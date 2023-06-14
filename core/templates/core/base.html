@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>MyFlowers</title>
+    <!-- Favicon  -->
+    <link rel="icon" href="">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Search Wrapper Area Start -->
+    <div class="search-wrapper section-padding-100">
+        <div class="search-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-content">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                            <button type="submit"><img src="{% static 'core/img/core-img/search.png'%}" alt=""></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Wrapper Area End -->
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a href="{% url 'index' %}"><img src="{% static 'core/img/logo2.png'%}" alt=""></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix" style="background-color: rgb(3, 156, 3);">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{% url 'index' %}"><img src="{% static 'core/img/MyFlowers__1_-removebg-preview.png'%}"
+                        height="500" width="500" alt=""></a>
+            </div>
+            <!-- Amado Nav -->
+            {% if user.is_authenticated %}
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active"><a style="color: white;" href="{% url 'index' %}">Home</a></li>
+                    <li><a style="color: white;" href="{% url 'shop' %}">Tienda</a></li>
+                </ul>
+            </nav>
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="{% url 'suscripcion' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Suscripcion</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Perfil : <span class="username" style="color: red;"> {{ user.username }} </span></a>
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <a href="{% url 'cart' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/carros.png'%}" alt="" height="40px" width="40px"> Carro
+                    <span style="color: white;">(0)</span></a>
+                <a href="{% url 'seguimiento' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/camion.png'%}" alt="" height="40px" width="40px"> Seguimiento </a>
+                <a href="{% url 'historial' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/historial-medico.png'%}" alt="" height="40px" width="40px"> Historial
+                </a>
+                <a href="{% url 'productosfavoritos' %}" class="fav-nav" style="color: white;"><img src="{% static 'core/img/estrella.png'%}" alt=""
+                        height="40px" width="40px"> Favorito</a>
+                <a href="#" class="search-nav" style="color: white;"><img src="{% static 'core/img/lupa.png'%}" alt=""
+                        height="40px" width="40px"> Buscar</a>
+            </div>
+            
+            {% else %}
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active"><a style="color: white;" href="{% url 'index' %}">Home</a></li>
+                </ul>
+            </nav>
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="{% url 'suscripcion' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Suscribirse</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Perfil : <span class="username" style="color: red;"> {{ user.username }} </span></a>
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            <!-- Social Button -->
+            <div class="social-info d-flex justify-content-between">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true" style="color: brown;"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true" style="color:red"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true" style="color:aqua"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:blue"></i></a>
+            </div>
+            
+        </header>
+        <!-- Header Area End -->
+        {% block contenido %}
+
+        {% endblock %}
+    </div>
+    <!-- ##### Newsletter Area Start ##### -->
+    <section class="newsletter-area section-padding-100-0 " style="background-color: rgb(96, 185, 13); ">
+        <div class="container">
+            <div class="row align-items-center d-flex justify-content-center">
+                <!-- Newsletter Text -->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="newsletter-text mb-100 text-center">
+                        <h2>Subscribete Para Obtener Un <span>25% Descuento</span></h2>
+                        <p style="color: white;">Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet
+                            mi vulputate
+                            consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### Newsletter Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single_widget_area">
+                        <!-- Logo -->
+                        <div class="footer-logo mr-50">
+                            <a href="index.html"><img src="{% static 'core/img/logo'%}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-8">
+                    <div class="single_widget_area">
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <nav class="navbar navbar-expand-lg justify-content-end">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#footerNavContent" aria-controls="footerNavContent"
+                                    aria-expanded="false" aria-label="Toggle navigation"><i
+                                        class="fa fa-bars"></i></button>
+                                <div class="collapse navbar-collapse" id="footerNavContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'index' %}"></a>
+                                        </li>
+                                        {% if user.is_authenticated %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'shop' %}"></a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#"></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="{% static 'core/js/jquery/jquery-2.2.4.min.js'%}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'core/js/popper.min.js'%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'core/js/bootstrap.min.js'%}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'core/js/plugins.js'%}"></script>
+    <!-- Active js -->
+    <script src="{% static 'core/js/active.js'%}"></script>
+
+</body>
+
+</html>

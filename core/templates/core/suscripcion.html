@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .cont {
+        margin-top: 120px;
+        margin-bottom: 100px;
+        height: 600px;
+        width: 800px;
+        background-color: rgb(189, 230, 184);
+        border-radius: 25px;
+        border: 5px solid yellow;
+    }
+</style>
+{% if user.is_authenticated %}
+<section class="cont" style="margin-left: 150px;">
+    <div class="mt-100">
+    <center class="mb-30">
+        <h1 style="color: rgb(0, 0, 0);">Su Suscripción Se agotara Pronto!!</h1>
+    </center>
+    <center class="mb-30">
+        <h4 style="color: rgb(0, 0, 0);">Aún le quedan 5 dias de Suscripción</h4>
+    </center>
+    <center class="mb-30"><button class="btn btn-primary profile-button" type="button">Renovar Suscripción</button></center>
+    <center class="mb-30"><h4 style="color: rgb(10, 10, 10);">Necesito Ayuda con mi Suscripción</h4></center>
+    <center class="mb-30">
+        <div class="col-md-8"><label class="labels"></label><input type="text" class="form-control"
+                placeholder="Ingrese su Correo" value=""></div>
+        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Enviar</button></div>
+    </center>
+</div>
+</section>
+
+{% else %}
+<section>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario HTML</title>
+</head>
+<body>
+    <h1 style="color: white;">Formulario HTML</h1>
+    <form method="POST" action="procesar_formulario.php">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

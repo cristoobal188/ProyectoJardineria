@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+        <div class="cart-table-area section-padding-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart-title mt-50">
+                            <h2 style="color: white;">Historial De Compras</h2>
+                        </div>
+
+                        <div class="cart-table clearfix" style="background-color: rgb(255, 255, 255);">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Fecha De Pedido</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="cart_product_img">
+                                            <a href="#"><img src="{% static 'core/img/cart1.jpg'%}" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <h5>Maceta Rectangular</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span>$5000</span>
+                                        </td>   
+                                        <td class="Fecha">
+                                            <span>08/06/2023</span>
+                                        </td>                                     
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+
+
+
+                {% endblock %}

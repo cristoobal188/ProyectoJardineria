@@ -1,0 +1,162 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<div class="cart-table-area section-padding-100" >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="cart-title mt-50">
+                    <h2 style="color: white;">Carrito De Compras</h2>
+                </div>
+
+                <div class="cart-table clearfix" style="background-color: rgb(255, 255, 255);">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        {% for item_carrito in items_carrito %}
+                        <tbody>
+                            <tr>
+                                <td class="cart_product_img">
+                                    {% if item_carrito.producto.foto %}
+                                    <img src="{{ item_carrito.producto.foto.url }}" class="img-fluid" width="100"
+                                        height="100">
+                                    {% else %}
+                                    <img src="{% static 'core/img/product1.jpg' %}" class="img-fluid" width="100"
+                                        height="100">
+                                    {% endif %}
+                                </td>
+                                <td class="cart_product_desc">
+                                    <p>{{ item_carrito.producto.nombre }}</p>
+                                </td>
+                                <td class="price">
+                                    <span>${{ item_carrito.producto.precio }}</span>
+                                </td>
+                                <td class="qty">
+                                    <div class="qty-btn d-flex">
+                                        <div class="col">
+                                            <a href="{% url 'Sub' item_carrito.producto_id %}"
+                                                class="badge btn btn-dark badge-dark">-</a>
+                                        </div>
+                                        <div class="quantity">
+                                            {{ item_carrito.cantidad }}
+                                        </div>
+                                        <div class="col">
+                                            <a href="{% url 'Add' item_carrito.producto_id %}" class="badge btn btn-dark badge-dark"
+                                                style="margin-right: 30px;">+</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary">
+                    <h5>Total A Pagar</h5>
+                    <ul class="summary-table">
+                        <li><span>subtotal:</span> <span>${{ precio_total }}</span></li>
+                        <li><span>delivery:</span> <span>Gratis</span></li>
+                        <li><span>total:</span> <span>${{ precio_total }}</span></li>
+                    </ul>
+                    <div class="d-flex justify-content-center justify-content-between mt-4" >
+    
+                        <div id="btnPaypal"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+
+
+<script src="http://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+
+    paypal.Button.render({
+        env: 'sandbox',
+        client: {
+            sandbox: 'Adk-VW5MPOTjE1uxbWMgDzPn7RB__ngXPEEUCyExzFuYEoZH1I7kv-ikWw1gdJ915L9TFLkWZLsqnh9i',
+            production: 'demo_production_client_id'
+        },
+
+        locale: 'es_CL',
+        style: {
+            size: 'medium',
+            color: 'gold',
+            shape: 'rect',
+        },
+        commit: true,
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: 'total_precio',
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                Swal.fire({
+                    title: 'Pago Exitoso',
+                    text: 'Pago realizado correctamente!',
+                    icon: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Aceptar'
+
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire('Compra', ' realizada exitosamente', 'success').then(function () {
+                            window.location.href = "/limpiar/";
+                        })
+                    }
+                });
+            })
+        },
+
+        onCancel(data) {
+            Swal.fire({
+                title: 'Pago Cancelado',
+                text: 'Pago ha sido cancelado!',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+
+
+            });
+        },
+
+    }, '#btnPaypal');
+
+</script>
+
+
+{% endblock %}

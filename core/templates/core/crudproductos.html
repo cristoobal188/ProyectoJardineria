@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<section class="mt-100" style="margin-left: 100px;">
+    <div class="mt-100">
+        <div class="col-12">
+            <table class="table" style="background-color: white;">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Fecha Agregado</th>
+                        <th scope="col">Fecha Modificado</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aux in listaProductos %}
+                    <tr>
+                        <th scope="row">{{aux.id}}</th>
+                        <td>
+                            <p class="text-capitalize my-1 justify-content-between">{{aux.nombre}}</p>
+                        </td>
+                        <td>
+                            <span>({{aux.stock}})</span>
+
+                            </p>
+                        </td>
+                        <td><span class="fw-bold">{{aux.precio}}</span></td>
+                        <td>
+                            <p class="text-capitalize my-1">{{aux.tipo}}</p>
+                        </td>
+                        <td>
+                            <p class="text-capitalize my-1">{{aux.fechagregado}}</p>
+                        </td>
+                        <td>
+                            <p class="text-capitalize my-1">{{aux.fechamodificado}}</p>
+                        </td>
+                        <td>
+                            <a href="{% url 'modificarproducto' aux.id %}"
+                                class="heart d-flex justify-content-center align-items-center ">
+                                <span>Editar</span>
+                            </a>
+                        </td>
+                        <td>
+
+                            <a href="{% url 'eliminarproducto' aux.id %}"
+                                class="heart d-flex justify-content-center align-items-center ">
+                                <span>Eliminar</span>
+                            </a>
+
+        </div>
+
+    </div>
+    </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    {% if user.is_superuser %}
+    <a href="{% url 'agregarproducto' %}" class="btn btn-primary mt-3 d-flex justify-content-center">Agregar
+        Productos</a>
+    {% endif %}
+</section>
+{% endblock %}
+
+<!-- Agrega la referencia a la biblioteca SweetAlert -->
