@@ -6,3 +6,4 @@ mysqlclient
 pillow
 django-jazzmin
 django-crispy-forms
+django-extensions
