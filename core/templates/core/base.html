@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+    <title>MyFlowers</title>
+    <!-- Favicon  -->
+    <link rel="icon" href="">
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+
+</head>
+
+<body>
+    <!-- Search Wrapper Area Start -->
+    <div class="search-wrapper section-padding-100">
+        <div class="search-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="search-content">
+                        <form action="#" method="get">
+                            <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                            <button type="submit"><img src="{% static 'core/img/core-img/search.png'%}" alt=""></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Wrapper Area End -->
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a href="{% url 'index' %}"><img src="{% static 'core/img/logo2.png'%}" alt=""></a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix" style="background-color: rgb(3, 156, 3);">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{% url 'index' %}"><img src="{% static 'core/img/logomyflowers.png'%}"
+                        height="500" width="500" alt=""></a>
+            </div>
+            <!-- Amado Nav -->
+            {% if user.is_authenticated %}
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active"><a style="color: white;" href="{% url 'index' %}">Home</a></li>
+                    <li><a style="color: white;" href="{% url 'shop' %}">Tienda</a></li>
+                </ul>
+            </nav>
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="{% url 'suscripcion' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Suscripcion</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Perfil : <span class="username" style="color: red;"> {{ user.username }} </span></a>
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <a href="{% url 'cart' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/carros.png'%}" alt="" height="40px" width="40px"> Carrito
+                    <span style="color: white;">(0)</span></a>
+                <a href="{% url 'seguimiento' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/camion.png'%}" alt="" height="40px" width="40px"> Seguimiento </a>
+                <a href="{% url 'historial' %}" class="cart-nav" style="color: white;"><img
+                        src="{% static 'core/img/historial-medico.png'%}" alt="" height="40px" width="40px"> Historial
+                </a>
+                <a href="{% url 'productosfavoritos' %}" class="fav-nav" style="color: white;"><img src="{% static 'core/img/estrella.png'%}" alt=""
+                        height="40px" width="40px"> Favorito</a>
+                <a href="#" class="search-nav" style="color: white;"><img src="{% static 'core/img/lupa.png'%}" alt=""
+                        height="40px" width="40px"> Buscar</a>
+                <button onclick="showNotification()" style="height: 60px; border-radius: 60px; background-color: rgb(216, 248, 34); padding:10px;">Mostrar notificaciónes</button>
+
+            </div>
+            
+            {% else %}
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active"><a style="color: white;" href="{% url 'index' %}">Home</a></li>
+                </ul>
+            </nav>
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="{% url 'suscripcion' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Suscribirse</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Perfil : <span class="username" style="color: red;"> {{ user.username }} </span></a>
+                </button>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn amado-btn mb-15"
+                    style="background-color: rgb(236, 240, 4);">Iniciar Sesión</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            <!-- Social Button -->
+            <div class="social-info d-flex justify-content-between">
+                <a href="#"><i class="fa fa-pinterest" aria-hidden="true" style="color: brown;"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true" style="color:red"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true" style="color:aqua"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:blue"></i></a>
+            </div>
+            
+        </header>
+        <!-- Header Area End -->
+        {% block contenido %}
+
+        {% endblock %}
+    </div>
+    <!-- ##### Newsletter Area Start ##### -->
+    <section class="newsletter-area section-padding-100-0 " style="background-color: rgb(96, 185, 13); ">
+        <div class="container">
+            <div class="row align-items-center d-flex justify-content-center">
+                <!-- Newsletter Text -->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="newsletter-text mb-100 text-center">
+                        <h2>Subscribete Para Obtener Un <span>5% Descuento</span></h2>
+                        <p style="color: white;">¡Claro! En "MyFlowers", valoramos a nuestros clientes y apreciamos su lealtad. Por eso, tenemos una oferta especial para ti. Si te suscribes a nuestro boletín o programa de membresía, recibirás un descuento exclusivo del 5% en tu próxima compra.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ##### Newsletter Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <div id="map"></div>
+     
+    <script>
+        function showNotification() {
+        if ('Notification' in window) {
+            Notification.requestPermission().then(function (permission) {
+            if (permission === 'granted') {
+                var options = {
+                body: '¡Hola! Esta es una notificación de prueba.',
+                icon: 'icon.png'
+                };
+                new Notification('Notificación de prueba', options);
+            }
+            });
+        } else {
+            alert("Las notificaciones no son compatibles con este navegador.");
+        }
+        }
+    </script>
+
+    <div>
+        <!DOCTYPE html>
+<html>
+    <head>
+    <style>
+        #map {
+        height: 400px;
+        width: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9YMnpoT_y3dYNbPN7ezaHLHidTKrblJ8"></script>
+    <script>
+        function initMap() {
+        // Coordenadas del centro del mapa (ciudad de San Francisco por defecto)
+        var center = { lat: -33.5985821, lng: -70.5816459 };
+
+        // Opciones de configuración del mapa
+        var mapOptions = {
+            center: center,
+            zoom: 12
+        };
+        styles: [
+            {
+                featureType: 'all',
+                elementType: 'all',
+                stylers: [
+                    { visibility: 'on' },
+                    { lightness: 100 },
+                    { saturation: -30 } // Desatura el mapa para obtener colores más suaves
+                ]
+            }
+            ]
+
+        // Crear mapa
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        // Obtener la ubicación actual
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+            var currentLocation = {
+                lat: -33.5987296,
+                lng: -70.5787496,
+            };
+
+            // Colocar un marcador en la ubicación actual
+            var marker = new google.maps.Marker({
+                position: currentLocation,
+                lat: -33.5985821,
+                lng: -70.5816459,
+                map: map,
+                title: 'Mi Ubicación'
+            });
+
+            // Centrar el mapa en la ubicación actual
+            map.setCenter(currentLocation);
+            });
+        }
+        }
+    </script>
+    </head>
+    <body>
+    <script>
+        // Inicializar el mapa cuando se cargue la página
+        window.onload = function () {
+        initMap();
+        };
+    </script>
+    </body>
+</html>
+    </div>
+            
+    </footer>
+    
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="{% static 'core/js/jquery/jquery-2.2.4.min.js'%}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'core/js/popper.min.js'%}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'core/js/bootstrap.min.js'%}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'core/js/plugins.js'%}"></script>
+    <!-- Active js -->
+    <script src="{% static 'core/js/active.js'%}"></script>
+
+</body>
+
+</html>

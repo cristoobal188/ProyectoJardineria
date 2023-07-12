@@ -1,0 +1,108 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .cont {
+        margin-top: 120px;
+        margin-bottom: 100px;
+        height: 600px;
+        width: 800px;
+        background-color: rgb(189, 230, 184);
+        border-radius: 25px;
+        border: 5px solid yellow;
+    }
+</style>
+{% if user.is_authenticated %}
+<section class="cont" style="margin-left: 150px;">
+    <div class="mt-100">
+    <center class="mb-30">
+        <h1 style="color: rgb(0, 0, 0);">Su Suscripción Se agotara Pronto!!</h1>
+    </center>
+    <center class="mb-30">
+        <h4 style="color: rgb(0, 0, 0);">Aún le quedan 5 dias de Suscripción</h4>
+    </center>
+    <center class="mb-30"><button class="btn btn-primary profile-button" type="button">Renovar Suscripción</button></center>
+    <center class="mb-30"><h4 style="color: rgb(10, 10, 10);">Necesito Ayuda con mi Suscripción</h4></center>
+    <center class="mb-30">
+        <div class="col-md-8"><label class="labels"></label><input type="text" class="form-control"
+                placeholder="Ingrese su Correo" value=""></div>
+        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Enviar</button></div>
+    </center>
+</div>
+</section>
+
+{% else %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de cuadro en HTML</title>
+  <style>
+    .cuadro {
+      width: 300px;
+      height: 450px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-left:350px;
+      margin-top:100px;
+      border-radius: 10px;
+    }
+    .btn-form{
+        margin-left:150px;
+        background-color: rgb(8, 165, 55);
+        border:none;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-form:hover{
+        margin-left:150px;
+        color:white;
+        background-color: rgb(8, 100, 55);
+        border:none;
+        border-radius: 10px;
+        padding: 10px;
+    }
+  </style>
+</head>
+  <body>
+  <div class="cuadro">
+    <head>
+  <title>Crear Cuenta</title>
+  </head>
+  <body>
+  <h1>Crear Cuenta</h1>
+  <form action="procesar_formulario.php" method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="email">Apellido:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+     <label for="email">Telefono:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+     <label for="email">Direccion:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+     <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <input class="btn-form" type="submit" value="Iniciar sesion">
+  </form>
+  </body>
+  </div>
+</body>
+</html>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block contenido %}
+
+<section class="col-9 mt-30">
+  <!-- Section: Design Block -->
+  <section class="text-center">
+    <div
+      class="card mx-4 mx-md-5 shadow-5-strong"
+      style="background: hsla(0, 2%, 58%, 0.8); backdrop-filter: blur(30px)"
+    >
+      <div class="card-body py-5 px-md-5">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <form method="post">
+              {% csrf_token %} {{form|crispy}}
+
+              <div
+                class="d-flex justify-content-around align-items-center mb-4"
+              >
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input
+                    class="form-check-input mt-4"
+                    type="checkbox"
+                    value=""
+                    id="form1Example3"
+                    checked
+                  />
+                  <label class="form-check-label mt-4" for="form1Example3">
+                    Recordar
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <center>
+                <button type="submit" class="btn btn-primary iniciar mb-4">
+                  Registrar
+                </button>
+              </center>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+</section>
+{% endblock %}

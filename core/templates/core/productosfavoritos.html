@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+    body {
+        background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+        /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="cart-title mt-50">
+                    <h2 style="color: white;">Productos Favoritos</h2>
+                </div>
+
+                <div class="cart-table clearfix" style="background-color: white;">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        {% for productosfavoritos in favoritos %}
+                        <tbody>
+                            <tr>
+                                <td class="cart_product_img">
+                                    {% if favoritos.producto.foto %}
+                                    <img src="{{ favoritos.producto.foto.url }}" class="img-fluid" width="100"
+                                        height="100">
+                                    {% else %}
+                                    <img src="{% static 'core/img/product1.jpg' %}" class="img-fluid" width="100"
+                                        height="100">
+                                    {% endif %}
+                                </td>
+                                <td class="cart_product_desc">
+                                    <p>{{ favoritos.producto.nombre }}</p>
+                                </td>
+                                <td class="price">
+                                    <span>${{ favoritos.producto.precio }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}

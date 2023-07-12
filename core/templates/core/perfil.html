@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<style>
+        body {
+            background-image: url("static/core/img/hojas-de-hosta_3840x2400_xtrafondos.jpg");
+            /* Puedes ajustar otras propiedades para controlar el aspecto del fondo */
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+<section class="col-9">
+        <div class="container rounded bg-white mt-5 mb-5">
+                <div class="row">
+                        <div class="col-md-3 border-right">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                                                class="rounded-circle mt-5" width="150px"
+                                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                                                class="font-weight-bold">{{ user.username }}</span><span
+                                                class="text-black-50">{{ user.username }}@gmail.com</span><span></span>
+                                        {% if user.is_superuser %}
+                                        <div class="d-flex justify-content-between">
+                                                <a href="{% url 'crudproductos' %}" class="btn btn-primary mt-3 mb-5"
+                                                        style="margin-right: 8px;">Productos</a>
+                                                <a href="{% url 'crudsuscriptores' %}"
+                                                        class="btn btn-primary mt-3 mb-5">Suscriptores</a>
+                                        </div>
+                                        {% endif %}
+                                </div>
+                        </div>
+                        <div class="col-md-5 border-right">
+                                <div class="p-3 py-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h4 class="text-right">Perfil</h4>
+                                        </div>
+                                        <div class="row mt-2">
+                                                <div class="col-md-6"><label class="labels">Nombre</label><input
+                                                                type="text" class="form-control" placeholder="Nombre"
+                                                                value=""></div>
+                                                <div class="col-md-6"><label class="labels">Apellido</label><input
+                                                                type="text" class="form-control" value=""
+                                                                placeholder="Apellido"></div>
+                                        </div>
+                                        <div class="row mt-3">
+                                                <div class="col-md-12"><label class="labels">Numero de
+                                                                Telefono</label><input type="text" class="form-control"
+                                                                placeholder="Introduzca Su Numero De Telefono" value=""></div>
+                                                <div class="col-md-12"><label class="labels">Codigo Postal</label><input
+                                                                type="text" class="form-control"
+                                                                placeholder="Introduzca El Codigo Postal" value=""></div>
+                                                <div class="col-md-12"><label class="labels">Ciudad</label><input
+                                                                type="text" class="form-control" placeholder="Ciudad"
+                                                                value=""></div>
+                                                <div class="col-md-12"><label class="labels">Comuna</label><input
+                                                                type="text" class="form-control" placeholder="Comuna"
+                                                                value=""></div>
+                                                <div class="col-md-12"><label class="labels">Correo</label><input
+                                                                type="text" class="form-control" placeholder="Correo"
+                                                                value=""></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                                <div class="mt-5 text-center"><button
+                                                                class="btn btn-primary profile-button"
+                                                                type="button">Guardar</button></div>
+
+                                                <div class="mt-5 text-center"><a class="btn btn-primary profile-button"
+                                                                href="{% url 'logout' %}">Cerrar Sesion</a></div>
+
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</section>
+
+<!-- ##### Main Content Wrapper End ##### -->
+
+
+
+{% endblock %}
